@@ -1,0 +1,10 @@
+FROM golang:1.16-alpine
+
+WORKDIR /app
+
+RUN go get -u github.com/RaghavSood/bitpeers/cmd/bitpeers
+
+COPY . /app/
+
+RUN chmod +x /app/app/address_reader/address_reader.sh
+RUN apk add --no-cache bash

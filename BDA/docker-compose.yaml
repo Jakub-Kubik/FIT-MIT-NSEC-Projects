@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+  node:
+    image: node
+    build:
+      context: .
+      dockerfile: Dockerfile_node
+      args:
+        PROJECT_PATH: ${PROJECT_PATH}
+
+    network_mode: hostPython(Django)
+
+    container_name: node
+    command: >
+      sh -c "while :; do sleep 600; cp /root/.qtum/peers.dat /root/.qtum/peers; echo 'copying ...'; done &
+             /app/qtum/src/qtumd -prune=1000 -rpcuser=test -rpcpassword=test1234"
+    volumes:
+      - ${PROJECT_PATH}/app/qtumd/peers.dat:/root/.qtum/peers
+      - ${PROJECT_PATH}/app/qtumd/debug.log:/root/.qtum/debug.log
+
+
+  monitor:
+    image: monitor
+    build:
+      context: .
+      dockerfile: Dockerfile_monitor
+      args:
+        PROJECT_PATH: ${PROJECT_PATH}
+
+    network_mode: host
+
+    container_name: monitor
+    command: ["python", "app/monitor.py"]
+    volumes:
+      - ${PROJECT_PATH}/app/monitor.log:/app/monitor.log
+      - ${PROJECT_PATH}/app/peers_info_ipv4.json:/app/peers_info_ipv4.json
+      - ${PROJECT_PATH}/app/address_reader/potential_peers_db.json:/app/address_reader/potential_peers_db.json
+
+
+  address_reader:
+    image: address_reader
+    build:
+      context: .
+      dockerfile: Dockerfile_addresses_reader
+      args:
+        PROJECT_PATH: ${PROJECT_PATH}
+
+    container_name: address_reader
+    command: ["bash", "/app/app/address_reader/address_reader.sh"]
+    volumes:
+      - ${PROJECT_PATH}/app/qtumd/peers.dat:/app/qtumd/peers.dat
+      - ${PROJECT_PATH}/app/address_reader/potential_peers_db.json:/app/address_reader/potential_peers_db.json

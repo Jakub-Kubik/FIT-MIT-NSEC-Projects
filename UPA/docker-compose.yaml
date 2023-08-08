@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  # main db
+  # -----------
+  influxdb:
+    image: influxdb:1.8.0
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - /opt/appdata/influxdb:/var/lib/influxdb
+    # setup credentials for user
+    environment:
+      INFLUXDB_HOSTNAME: "http://influxdb:8086"
+      INFLUXDB_USERNAME: "upa21"
+      INFLUXDB_PASSWORD: "upa21"
+      # disable limit for client data size in 1 saving request
+      INFLUXDB_HTTP_MAX_BODY_SIZE: 0
+    restart: always
+
+  # UPA 1st task
+  # ------------
+  scraper:
+    build: .  # build Dockerfile
+    container_name: scraper
+    command: ["python", "scraper.py"] # execute this command
+    environment:
+      INFLUX_HOST: "influxdb"
+      INFLUX_PORT: "8086"
+      INFLUX_LOGIN: "upa21"
+      INFLUX_PASSWORD: "upa21"
+
+#  # UPA 2nd task
+#  # ------------
+#  visualizer:
+#    extends:
+#      service: base
+#
+#    container_name: visualizer

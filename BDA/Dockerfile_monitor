@@ -1,0 +1,10 @@
+FROM python:3.9
+
+WORKDIR /app
+RUN touch /app/monitor.log
+
+COPY requirements.txt /app/
+
+RUN pip install -r requirements.txt --exists-action s
+
+COPY . /app/

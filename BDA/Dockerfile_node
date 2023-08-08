@@ -1,0 +1,16 @@
+FROM python:3.9
+
+WORKDIR /app
+
+RUN apt-get -y update && \
+    apt-get -y install git && \
+    apt-get -y install bsdmainutils && \
+    apt-get install gcc && \
+    echo "Y" | apt-get install libdb++-dev && \
+    echo "Y" | apt-get install build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev libboost-all-dev && \
+    git clone https://github.com/qtumproject/qtum --recursive
+
+RUN cd qtum && \
+    ./autogen.sh && \
+    ./configure --disable-wallet && \
+    make -j2

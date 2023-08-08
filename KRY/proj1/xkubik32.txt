@@ -1,0 +1,188 @@
+====================
+Názov použitej šifry
+====================
+- Playfair
+
+
+
+
+====================================
+Tajný kľúč resp. dešiforvacia matica
+====================================
+- dešiforvacia matica:
+  --------------------
+
+	 G | D | C | Q | E
+	---+---+---+---+---
+	 Z | A | M | R | F
+	---+---+---+---+---
+	 L | N | O | H | K
+	---+---+---+---+---
+	 V | W | X | S | T
+	---+---+---+---+---
+	 P | I | Y | U | B
+
+
+
+
+=================================
+Zadaný text v dešiforvanej podobe
+=================================
+- šiforvaný text:
+  ---------------
+	UQQOKQZIGCBIGVFWBFHUKMDMTFXHZTMFYNQUNWANOZHXWBWAQTQMYPFIKGNBWATHOHIWHOOPXKCTBGAUDKQGCWQIXEOSKHQUDTPWQTSKQFDTRWSKGCHYQLXBCNPQKOBSSKFBDKCGMHOPLHFTNWEWKQQMUWIZWAQMYRPKDWDQHQOVKGHUTDFBDMTFWRWAUSHMXEFNQTDPLDQFDMTFWRWAKHKDCMFNQTNWEWKQSNHNFKMRPNCXMEFNQTNWEWKQKWKQFQTDFQZIGVGBBDWRWABGMDLUBDWRWAIBZYNBLIBDTUQTDAQTVHYDQTKMNRRMWAXRHLGCEFFKNWCAHMCKTGAQGKGQWFPKGCUWKQXHZBFQTQZSGCGVYRWRWABGMDKQWRWABGMFWRWARQDWQGWHKXXKFCKWYNKIMHPNGCUSNANWQANMTVGCQOYDTFHWXKDGSKQFIDSKYKVNXHZRPNNFWAQMDFRMOVOZDWZVGCNUCVZVGCUIPDZVGCUIFQVSXBRYQORWUNZWCTDKYRQFFWGCSKCFIDSKSKCFKXKQZHBXDFYLVTDKADLDBIBWXQNHIQXHZTZIHMZFXOSKCFDATVKQZWDKPKQTTVKQRMFHDINWBEFQFWNRWAWBFCXKADXQQUTVNUTUNWRQFBRWBWCGTQZSQTNWANFXXYKCZDQFXKDGXKWIBWORUXXKMUNRYVIYOPYDNRYKCQFMKDINWHKXDWXHQZDFWFSQMSMURWNUUSUWXKAUNWPBWEDAMRGVDBQUWBQGXKGTQFICNDKWCY
+
+- dešiforvaný text:
+  -----------------
+	- raw dešiforvaný text:
+		SUCHHEAPEDUPPLATTERSOFCAKESOFVARIOUSANDALMOSTINDESCRIBABLEKINDSKNOWNONLYTOEXPERIENCEDXDUTCHXHOUSEWIVESTHEREWASTHEDOUGHTYDOUGHNUTTHETENDEROLYKOEKANDTHECRISPANDCRUMBLINGCRULXLERSWEETCAKESANDSHORTCAKESGINGERCAKESANDHONEYCAKESANDTHEWHOLEFAMILYOFCAKESANDTHENTHEREWEREAPPLEPIESANDPEACHPIESANDPUMPKINPIESBESIDESSLICESOFHAMANDSMOKEDBEEFANDMOREOVERDELECTABLEDISHESOFPRESERVEDPLUMSANDPEACHESANDPEARSANDQUINCESNOTTOMENTIONBROILEDSHADANDROASTEDCHICKENSTOGETHERWITHBOWLSOFMILKANDCREAMALXLMINGLEDHIGXGLEDYPIGGLEDYPRETXTYMUCHASIHAVEXENUMERATEDTHEMWITHTHEMOTHERLYTEAPOTSENDINGUPITSCLOUDSOFVAPORFROMTHEMIDSTHEAVENBLESSTHEMARKIWANTBREATHANDTIMETODISCUSSTHISBANQUETASITDESERVESANDAMTOXOEAGERTOGETONWITHMYSTORYHAPXPILYICHABODCRANEWASNOTINSOGREATAHURXRYASHISHISTORIANBUTDIDAMPLEIUSTICETOEVERYDAINTYX
+
+	- dešiforvaný text po všetkých úpravach:
+		SUCH HEAPED UP PLATTERS OF CAKES OF VARIOUS AND ALMOST INDESCRIBABLE KINDS KNOWN ONLY TO EXPERIENCED DUTCH HOUSEWIVES THERE WAS THE DOUGHTY DOUGHNUT THE TENDER OLY KOEK AND THE CRISP AND CRUMBLING CRULLER SWEET CAKES AND SHORT CAKES GINGER CAKES AND HONEY CAKES AND THE WHOLE FAMILY OF CAKES AND THEN THERE WERE APPLE PIES AND PEACH PIES AND PUMPKIN PIES BESIDES SLICES OF HAM AND SMOKED BEEF AND MOREOVER DELECTABLE DISHES OF PRESERVED PLUM SAND PEACHES AND PEARS AND QUINCES NOT TO MENTION BROILED SHAD AND ROASTED CHICKENS TOGETHER WITH BOWLS OF MILK AND CREAM ALL MINGLED HIGGLEDY PIGGLEDY PRETTY MUCH AS I HAVE ENUMERATED THEM WITH THE MOTHERLY TEAPOT SENDING UP ITS CLOUDS OF VAPOR FROM THE MIDST HEAVEN BLESS THE MARK I WANT BREATH AND TIME TO DISCUSS THIS BANQUET AS IT DESERVES AND AM TOO EAGER TO GET ON WITH MY STORY HAPPILY ICHABOD CRANE WAS NOT IN SO GREAT A HURRY AS HIS HISTORIAN BUT DID AMPLE JUSTICE TO EVERY DAINTY
+
+
+Dešiforvaný text je časť z knihy `THE LEGEND OF SLEEPY HOLLOW by Washington Irving` (Predpokladám, že ostatný spolužiaci majú zvyšné časti :) ). 
+- Tam som si našiel dešiforvaný text aj s interpunkciou:
+  ------------------------------------------------------
+	Such heaped up platters of cakes of various and almost indescribable kinds, known only to experienced Dutch housewives! There was the doughty doughnut, the tender oly koek, and the crisp and crumbling cruller; sweet cakes and short cakes, ginger cakes and honey cakes, and the whole family of cakes. And then there were apple pies, and peach pies, and pumpkin pies; besides slices of ham and smoked beef; and moreover delectable dishes of preserved plums, and peaches, and pears, and quinces; not to mention broiled shad and roasted chickens; together with bowls of milk and cream, all mingled higgledy-piggledy, pretty much as I have enumerated them, with the motherly teapot sending up its clouds of vapor from the midst—Heaven bless the mark! I want breath and time to discuss this banquet as it deserves, and am too eager to get on with my story. Happily, Ichabod Crane was not in so great a hurry as his historian, but did ample justice to every dainty.
+
+
+
+
+============================
+Popis postupu môjho riešenia
+============================
+- Pre dešifrovanie boli potrebné tieto kroky:
+  -------------------------------------------
+	1. Zistiť o akú šifru sa jedná
+	2. Úprava dešifrovanej časti textu
+	3. Najskôr nájisť klúč na dešifrovanie (resp. matica stačí)
+	4. Dešiforvať zašiforvaný text
+	5. Pridať zmysluplné medzery do dešifrovaného textu
+	6. Odstrániť vyplňujúce X z dešiforvaného textu
+	7. Nahradiť v dešifrovanom texte I za J kde to dáva zmysel
+
+
+- 1. Zistenie o akú šifru sa jedná:
+  ---------------------------------
+	Pre odhalenie šifry mi dosť pomohla nápoveda v zadaní (substitučná šifra, polovica 19. storočia, použitá vo WW1 aj WW2, zložitejšie prelomenie než u monoalfabetických šifier). 
+    Ďalej mi pomohlo, že:
+    	- zašiforvaný text má párny počet znakov
+    	- v zašiforvanom texte je použitých len 25 rôznych znakov (1 sa vynecháva)
+
+
+- 2. Úprava dešiforvanej časti textu:
+  -----------------------------------
+	Dešifrovanú časť textu bolo najskôr potrebné upraviť aby som mohol zistiť maticu na dešiforvanie. Toto som spravil pomocou Python skriptu.
+	Postup:
+		- dešifrovaný text som previedol na uppercase a odstránil som nealfabetické znaky.
+		- takto upravený text som rozdelil na dvojice 
+		- postupne som prechádzal jednotlivé dvojice, keď sa v dvojici opakovali rovnaké znaky, tak som druhý znaak nahradil za `X` a tým pádom sa všetky zvyšné znaky posunuli
+
+
+- 3. Postup pre zistenie matice na dešifrovanie zašiforvaného textu:
+  ------------------------------------------------------------------
+	Pri samotnom zostavovaní matice som vychádzal z týchto zdrojov:
+		- https://en.wikipedia.org/wiki/Playfair_cipher
+		- https://crypto.stackexchange.com/questions/35722/how-to-find-the-keyword-of-the-playfair-cipher-given-the-plaintext-and-the-ciph
+
+	Možné výmeny v matici:
+	 	- Priamo v stĺpci (znaky následujú pod sebou) 	  -> POSUN DOLE 
+	 	- Priamo v riadku (znaky následujú za sebou)  	  -> POSUN DOPRAVA
+	 	- vo štvorci,obdĺžniku (výmena vždy len v riadku) -> POSUN OBOMA STRANAMI ALE LEN V RIADKU
+
+
+	Postup pre zostavenie matice:
+		- 1. Nájisť dvojice, kde plaintext a zašiforvaný text zdielajú znak (toto znamená, že všetky znaky z tejto štvorice resp. trojice musia byť spolu v jedno riadku alebo stĺpci hľadanej matice)
+			- Nájdené trojice: SUQ, ANW, DAN, NOH, NWI, OHK 
+		
+		- 2. Pre každý znak z nájdených trojích som si vypísal, všetky možnosti na aký iný znak sa zašiforváva a z akých iných znakov sa dešifrováva
+			- S (e) -> U, X, T, W
+			- S (d) -> X, T
+			- U (e) -> Q, B, I, Y, P
+			- U (d) -> S, I
+			- Q (e) -> NIČ
+			- Q (d) -> U, C, E, D, G
+			- A (e) -> Z, F, M, N, R
+			- A (d) -> D, R
+			- N (e) -> W, O, K
+			- N (d) -> O, A, K
+			- W (e) -> I, T
+			- W (d) -> T, N, X, S
+			- D (e) -> C, A, Q, E
+			- D (d) -> C, E, I
+			- O (e) -> K, H, N
+			- O (d) -> H, L, N
+			- H (e) -> O, K, L
+			- H (d) -> R, O, K
+			- I (e) -> Y, B, U, P, D
+			- I (d) -> P, B, W, U
+			- K (e) -> T, N, H, L
+			- K (d) -> H, O, L, N
+		
+		- 3. Zvýraznil som si  znaky na ktoré a zároveň z ktorých sa znaky zo zistených trojíc šifrujú a deširujú:
+			- S (e, d) -> X, T
+			- U (e, d) -> I
+			- A (e, d) -> R
+			- N (e, d) -> O, K
+			- W (e, d) -> T
+			- D (e, d) -> C
+			- O (e, d) -> H, N
+			- H (e, d) -> O, K
+			- I (e, d) -> U, P, B
+			- K (e, d) -> N, H, L
+
+		- 4. Vybral som si NOH a umiestnil som ho do stredu matice.
+		
+		- 5. Zistil som, že sa šifruje aj dešifruje na K a v trojici mám tiež OHK. Čiže som len K pridal vedľa H.
+		
+		- 6. Ďalej som doplnil DAN nad N. Pretože A sa šifruje na N a N sa dešifruje na A. 
+		
+		- 7. Pre NWI mi zostala už len 1 možná pozícia, tak som ho dopnil pod N a skontroloval som, či všetko sedí ako má. Taktiež som mal hneď automaticky doplnené aj ANW.
+		
+		- 8. K sa šifruje a deširuje na L. Čiže L musí byť vedľa K alebo pod K. Našiel som si dvojicu KO =: LH a z toho vyplýva, že L je vedľa K.
+		
+		- 9. Z dvojice IS =: UW a toho, že SUQ je spolu v riadku alebo stlpci môže byť SUQ jedine pod H v stĺpci. Teraz mám už všetky tojice doplnené a aj pár znakov navyše.
+		
+		- 10. Ďalej som pokračoval tak, že som hladal dvojicem kde mám už aspoň 3 zo 4 znakov a tým pádom som 4 znak vedel automaticky doplniť na 4 miesto. Napr. dvojica SO  XH. X som doplnil pod O.
+		
+		- 11. RI =: AU doplnil som R nad H.
+		
+		- 12. UG = PQ. Doplnil som G aj P.
+		
+		- 13. IV = PW. Doplnil som V.
+		
+		- 14. LY = OP. Doplnil som Y.
+		
+		- 15. DX = CW. Doplnil som C.
+		
+		- 16. TI = WB. Doplnil som T aj B.
+		
+		- 17. EW = DT. Doplnil som E.
+		
+		- 18. AR = MF. Doplnil som M aj F.
+		
+		- 19. Na posledne volne miesto v matici zostalo Z.
+
+
+	Takto zostavenú maticu spolu so zašiforvaným textom som vložil do online toolu (https://www.dcode.fr/playfair-cipher) a ten mi rozšiforval zašiforvaný text.
+
+	
+- 4. Surový dešiforvaný text:
+  ---------------------------
+	SUCHHEAPEDUPPLATTERSOFCAKESOFVARIOUSANDALMOSTINDESCRIBABLEKINDSKNOWNONLYTOEXPERIENCEDXDUTCHXHOUSEWIVESTHEREWASTHEDOUGHTYDOUGHNUTTHETENDEROLYKOEKANDTHECRISPANDCRUMBLINGCRULXLERSWEETCAKESANDSHORTCAKESGINGERCAKESANDHONEYCAKESANDTHEWHOLEFAMILYOFCAKESANDTHENTHEREWEREAPPLEPIESANDPEACHPIESANDPUMPKINPIESBESIDESSLICESOFHAMANDSMOKEDBEEFANDMOREOVERDELECTABLEDISHESOFPRESERVEDPLUMSANDPEACHESANDPEARSANDQUINCESNOTTOMENTIONBROILEDSHADANDROASTEDCHICKENSTOGETHERWITHBOWLSOFMILKANDCREAMALXLMINGLEDHIGXGLEDYPIGGLEDYPRETXTYMUCHASIHAVEXENUMERATEDTHEMWITHTHEMOTHERLYTEAPOTSENDINGUPITSCLOUDSOFVAPORFROMTHEMIDSTHEAVENBLESSTHEMARKIWANTBREATHANDTIMETODISCUSSTHISBANQUETASITDESERVESANDAMTOXOEAGERTOGETONWITHMYSTORYHAPXPILYICHABODCRANEWASNOTINSOGREATAHURXRYASHISHISTORIANBUTDIDAMPLEIUSTICETOEVERYDAINTYX
+
+
+- 5. Surový dešiforvaný text s medzerami:
+  ---------------------------------------
+	SUCH HEAPED UP PLATTERS OF CAKES OF VARIOUS AND ALMOST INDESCRIBABLE KINDS KNOWN ONLY TO EXPERIENCED XDUTCH XHOUSEWIVES THERE WAS THE DOUGHTY DOUGHNUT THE TENDER OLY KOEK AND THE CRISP AND CRUMBLING CRULXLER SWEET CAKES AND SHORT CAKES GINGER CAKES AND HONEY CAKES AND THE WHOLE FAMILY OF CAKES AND THEN THERE WERE APPLE PIES AND PEACH PIES AND PUMPKIN PIES BESIDES SLICES OF HAM AND SMOKED BEEF AND MOREOVER DELECTABLE DISHES OF PRESERVED PLUM SAND PEACHES AND PEARS AND QUINCES NOT TO MENTION BROILED SHAD AND ROASTED CHICKENS TOGETHER WITH BOWLS OF MILK AND CREAM ALXL MINGLED HIGXGLEDY PIGGLEDY PRETXTY MUCH AS I HAVE XENUMERATED THEM WITH THE MOTHERLY TEAPOT SENDING UP ITS CLOUDS OF VAPOR FROM THE MIDST HEAVEN BLESS THE MARK I WANT BR EAT HAND TIME TO DISCUSS THIS BANQUET AS IT DESERVES AND AM TOXO EAGER TO GET ON WITH MY STORY HAPXPILY ICHABOD CRANE WAS NOT IN SO GREAT A HURXRY AS HIS HISTORIAN BUT DID AMPLE IUSTICE TO EVERY DAINTYX
+
+
+- 6. Surový dešiforvaný text s medzerami bez vyplňujúcich `X`:
+  ------------------------------------------------------------
+	SUCH HEAPED UP PLATTERS OF CAKES OF VARIOUS AND ALMOST INDESCRIBABLE KINDS KNOWN ONLY TO EXPERIENCED DUTCH HOUSEWIVES THERE WAS THE DOUGHTY DOUGHNUT THE TENDER OLY KOEK AND THE CRISP AND CRUMBLING CRULLER SWEET CAKES AND SHORT CAKES GINGER CAKES AND HONEY CAKES AND THE WHOLE FAMILY OF CAKES AND THEN THERE WERE APPLE PIES AND PEACH PIES AND PUMPKIN PIES BESIDES SLICES OF HAM AND SMOKED BEEF AND MOREOVER DELECTABLE DISHES OF PRESERVED PLUM SAND PEACHES AND PEARS AND QUINCES NOT TO MENTION BROILED SHAD AND ROASTED CHICKENS TOGETHER WITH BOWLS OF MILK AND CREAM ALL MINGLED HIGGLEDY PIGGLEDY PRETTY MUCH AS I HAVE ENUMERATED THEM WITH THE MOTHERLY TEAPOT SENDING UP ITS CLOUDS OF VAPOR FROM THE MIDST HEAVEN BLESS THE MARK I WANT BR EAT HAND TIME TO DISCUSS THIS BANQUET AS IT DESERVES AND AM TOO EAGER TO GET ON WITH MY STORY HAPPILY ICHABOD CRANE WAS NOT IN SO GREAT A HURRY AS HIS HISTORIAN BUT DID AMPLE IUSTICE TO EVERY DAINTY
+
+
+- 7. Surový dešiforvaný text s medzerami bez vyplňujúcich `X` a s nahradenými `I` za `J` kde to je potreba:
+  ---------------------------------------------------------------------------------------------------------
+	SUCH HEAPED UP PLATTERS OF CAKES OF VARIOUS AND ALMOST INDESCRIBABLE KINDS KNOWN ONLY TO EXPERIENCED DUTCH HOUSEWIVES THERE WAS THE DOUGHTY DOUGHNUT THE TENDER OLY KOEK AND THE CRISP AND CRUMBLING CRULLER SWEET CAKES AND SHORT CAKES GINGER CAKES AND HONEY CAKES AND THE WHOLE FAMILY OF CAKES AND THEN THERE WERE APPLE PIES AND PEACH PIES AND PUMPKIN PIES BESIDES SLICES OF HAM AND SMOKED BEEF AND MOREOVER DELECTABLE DISHES OF PRESERVED PLUM SAND PEACHES AND PEARS AND QUINCES NOT TO MENTION BROILED SHAD AND ROASTED CHICKENS TOGETHER WITH BOWLS OF MILK AND CREAM ALL MINGLED HIGGLEDY PIGGLEDY PRETTY MUCH AS I HAVE ENUMERATED THEM WITH THE MOTHERLY TEAPOT SENDING UP ITS CLOUDS OF VAPOR FROM THE MIDST HEAVEN BLESS THE MARK I WANT BREATH AND TIME TO DISCUSS THIS BANQUET AS IT DESERVES AND AM TOO EAGER TO GET ON WITH MY STORY HAPPILY ICHABOD CRANE WAS NOT IN SO GREAT A HURRY AS HIS HISTORIAN BUT DID AMPLE JUSTICE TO EVERY DAINTY
